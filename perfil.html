@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu perfil | PHLS Delivery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header class="topo">
+    <div class="container topo-interno">
+      <a href="index.html" class="logo"><img src="img/logo.jpg" alt="PHLS Delivery"></a>
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="cardapio.html">Cardápio</a>
+        <a href="pedidos.html">Meus pedidos</a>
+      </nav>
+      <div class="acoes">
+        <button class="btn-icone" id="btn-tema" aria-label="Alternar modo claro e escuro">
+          <svg class="icone-lua" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icone-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
+        </button>
+        <a href="carrinho.html" class="btn-carrinho" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12h11.2L21 7H6"/></svg>
+          <span class="texto-carrinho">Carrinho</span>
+          <span class="badge" id="badge" hidden>0</span>
+        </a>
+        <a href="perfil.html" class="btn-conta" id="btn-conta">
+          <span class="avatar" id="avatar"></span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+          <span class="texto-conta" id="texto-conta">Entrar</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container secao">
+    <h1>Meu perfil</h1>
+    <p class="subtitulo">Gerencie seus dados e endereços de entrega.</p>
+
+    <p class="vazio" id="sem-login" hidden>Entre na sua conta para ver seu perfil.</p>
+
+    <div class="perfil-layout" id="perfil" hidden>
+      <!-- Menu lateral -->
+      <aside class="caixa perfil-lateral">
+        <div class="perfil-usuario">
+          <span class="avatar" id="perfil-avatar"></span>
+          <div><b id="perfil-nome"></b><small id="perfil-desde"></small></div>
+        </div>
+        <nav class="perfil-menu">
+          <a href="#dados" class="ativo" id="menu-dados">Meus dados</a>
+          <a href="#enderecos" id="menu-enderecos">Endereços</a>
+          <a href="pedidos.html">Meus pedidos</a>
+        </nav>
+        <button class="btn btn-perigo" id="btn-sair">Sair da conta</button>
+      </aside>
+
+      <div class="perfil-conteudo">
+        <!-- Dados pessoais -->
+        <section class="caixa" id="dados">
+          <h2>Dados pessoais</h2>
+          <p class="suave">Clique em “Editar dados” para alterar suas informações.</p>
+          <form id="form-perfil" novalidate>
+            <div class="tres-colunas">
+              <div class="campo">
+                <label for="perfil-campo-nome">Nome completo</label>
+                <input id="perfil-campo-nome" maxlength="100" readonly>
+                <small class="msg-erro"></small>
+              </div>
+              <div class="campo">
+                <label for="perfil-email">E-mail</label>
+                <input id="perfil-email" readonly>
+              </div>
+              <div class="campo">
+                <label for="perfil-cpf">CPF</label>
+                <input id="perfil-cpf" readonly>
+              </div>
+              <div class="campo">
+                <label for="perfil-telefone">Telefone</label>
+                <input id="perfil-telefone" maxlength="15" inputmode="numeric" readonly>
+                <small class="msg-erro"></small>
+              </div>
+            </div>
+            <div class="botoes-perfil">
+              <button type="button" class="btn btn-contorno" id="btn-editar">Editar dados</button>
+              <button type="submit" class="btn btn-primario" id="btn-salvar" disabled>Salvar alterações</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Endereços -->
+        <section class="caixa" id="enderecos">
+          <h2>Endereços cadastrados</h2>
+          <div id="lista-enderecos"></div>
+
+          <form class="form form-endereco" id="form-endereco" novalidate hidden>
+            <div class="duas-colunas col-rua">
+              <div class="campo">
+                <label for="end-rua">Rua <span class="obrigatorio">*</span></label>
+                <input id="end-rua" maxlength="150" placeholder="Ex.: Rua das Flores">
+                <small class="msg-erro"></small>
+              </div>
+              <div class="campo">
+                <label for="end-numero">Número <span class="obrigatorio">*</span></label>
+                <input id="end-numero" maxlength="10" placeholder="Ex.: 123">
+                <small class="msg-erro"></small>
+              </div>
+            </div>
+            <div class="duas-colunas">
+              <div class="campo">
+                <label for="end-bairro">Bairro <span class="obrigatorio">*</span></label>
+                <input id="end-bairro" maxlength="100" placeholder="Ex.: Centro">
+                <small class="msg-erro"></small>
+              </div>
+              <div class="campo">
+                <label for="end-cep">CEP <span class="obrigatorio">*</span></label>
+                <input id="end-cep" maxlength="9" inputmode="numeric" placeholder="00000-000">
+                <small class="msg-erro"></small>
+              </div>
+            </div>
+            <div class="duas-colunas col-rua">
+              <div class="campo">
+                <label for="end-cidade">Cidade <span class="obrigatorio">*</span></label>
+                <input id="end-cidade" maxlength="100" placeholder="Ex.: Belo Horizonte">
+                <small class="msg-erro"></small>
+              </div>
+              <div class="campo">
+                <label for="end-estado">Estado (UF) <span class="obrigatorio">*</span></label>
+                <input id="end-estado" maxlength="2" placeholder="MG">
+                <small class="msg-erro"></small>
+              </div>
+            </div>
+            <div class="botoes-perfil">
+              <button type="button" class="btn btn-contorno" id="btn-cancelar-endereco">Cancelar</button>
+              <button type="submit" class="btn btn-primario">Salvar endereço</button>
+            </div>
+          </form>
+
+          <button class="btn btn-contorno btn-adicionar" id="btn-novo-endereco">+ Adicionar endereço</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+    <div class="container rodape-interno">
+      <div>
+        <span class="logo"><img src="img/logo.jpg" alt="PHLS Delivery"></span>
+        <p>Hambúrgueres feitos na hora, entregues quentinhos.</p>
+      </div>
+      <div>
+        <nav class="rodape-links">
+          <a href="index.html">Início</a>
+          <a href="ofertas.html">Ofertas</a>
+          <a href="cardapio.html">Cardápio</a>
+          <a href="pedidos.html">Meus pedidos</a>
+        </nav>
+        <small>© 2026 PHLS Delivery — projeto escolar fictício</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra de navegação do celular -->
+  <nav class="barra-mobile">
+    <a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Início</a>
+    <a href="ofertas.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 15.5l7-7"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="15" r="1"/></svg>Ofertas</a>
+    <a href="cardapio.html"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Cardápio</a>
+    <a href="pedidos.html"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1 14H6z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Pedidos</a>
+    <a href="perfil.html" class="ativo" id="nav-conta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Conta</a>
+  </nav>
+
+  <!-- Mensagem rápida (aviso) -->
+  <div class="aviso" id="aviso"></div>
+
+  <!-- Scripts: primeiro os dados, depois as funções comuns, por último o da página -->
+  <script src="js/dados.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>
